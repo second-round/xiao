@@ -54,7 +54,6 @@ public class RetrofitManager<T> {
         }
         return retrofitManager;
     }
-
     private BaseApis mBaseApis;
 
     public RetrofitManager(){

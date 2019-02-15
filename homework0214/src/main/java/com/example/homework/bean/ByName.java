@@ -9,8 +9,8 @@ public class ByName {
         return result;
     }
 
-    public void setResult(List<ResultBean> result) {
-        this.result = result;
+    public void setResult(ResultBean result) {
+        this.result.add(result);
     }
 
     public static class ResultBean {

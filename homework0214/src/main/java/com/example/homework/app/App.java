@@ -3,11 +3,14 @@ package com.example.homework.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.example.homework.greendao.DaoMaster;
+import com.example.homework.greendao.DaoSession;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.io.File;
@@ -19,6 +22,11 @@ public class App extends Application {
     //绘制页面时参照的设计图宽度
     public final static float DESIGN_WIDTH = 750;
     public static Context context;
+    public static App instances;
+    private DaoMaster.DevOpenHelper mHelper;
+    private SQLiteDatabase db;
+    private DaoMaster mDaoMaster;
+    private DaoSession mDaoSession;
 
     @Override
     public void onCreate() {
@@ -26,7 +34,11 @@ public class App extends Application {
         resetDensity();
         Fresco.initialize(this);
         context=getApplicationContext();
+        GreendaoUtils.getInstance().initGreenDao(this);
     }
+
+
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
